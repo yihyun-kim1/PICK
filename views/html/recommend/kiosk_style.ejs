@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>style</title>
+    <link href="../../css/recommend/recommend.css" rel = "stylesheet"/>
+    <link href="../../css/recommend/style.css" rel = "stylesheet"/>
+</head>
+<body>
+
+    <!-- logo -->
+    <div class = nav-container>
+        <a class = logo href="/home"><p>:<span>P</span></p>ICK</a>
+    </div>
+
+    <div class = recommend-container>
+        <!-- title -->
+        <div class = title-container>
+            <p>CHOOSE YOUR USUAL <span>STYLE</span>.</p>
+        </div>
+
+        <!-- select -->
+        <div class = purpose-container>
+            <div class = purpose id = style-casual>
+                <img id = casual-img src="../../image/casual.jpg">
+                <div>
+                    <p id = casual-text class = purpose-description>CASUAL</p>
+                </div>
+            </div>
+        </div>
+
+        <div class = purpose-container id = style-formal>
+            <div class = purpose>
+                <img id = formal-img src="../../image/formal.jpg">
+                <div>
+                    <p id = formal-text class = purpose-description>FORMAL</p>
+                </div>
+            </div>
+        </div>
+
+        <div class = purpose-container id = style-unique>
+            <div class = purpose>
+                <img id = unique-img src="../../image/special.jpg">
+                <div>
+                    <p id = unique-text class = purpose-description>SPORTY</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- previous -->
+        <div class = previous-container>
+            <a class = logo href="/season"><p>:<span>P</span></p>REVIOUS</a>
+            <p class = logo onclick="movePage(event)">NEXT</p>
+        </div>
+    </div>
+    <script>
+        const styleCasual = document.getElementById("style-casual");
+        const styleFormal = document.getElementById("style-formal");
+        const styleUnique = document.getElementById("style-unique");
+        let selectedStyle;
+
+        styleCasual.addEventListener("click", function(){
+            selectedStyle = "casual";
+            document.getElementById("casual-img").style.filter = "brightness(.3)";
+            document.getElementById("formal-img").style.filter = "brightness(1)";
+            document.getElementById("unique-img").style.filter = "brightness(1)";
+            document.getElementById("casual-text").style.opacity = "1";
+            document.getElementById("formal-text").style.opacity = "0";
+            document.getElementById("unique-text").style.opacity = "0";
+        });
+
+        styleFormal.addEventListener("click", function(){
+            selectedStyle = "formal";
+            document.getElementById("casual-img").style.filter = "brightness(1)";
+            document.getElementById("formal-img").style.filter = "brightness(.3)";
+            document.getElementById("unique-img").style.filter = "brightness(1)";
+            document.getElementById("casual-text").style.opacity = "0";
+            document.getElementById("formal-text").style.opacity = "1";
+            document.getElementById("unique-text").style.opacity = "0";
+        });
+
+        styleUnique.addEventListener("click", function(){
+            selectedStyle = "sporty";
+            document.getElementById("casual-img").style.filter = "brightness(1)";
+            document.getElementById("formal-img").style.filter = "brightness(1)";
+            document.getElementById("unique-img").style.filter = "brightness(.3)";
+            document.getElementById("casual-text").style.opacity = "0";
+            document.getElementById("formal-text").style.opacity = "0";
+            document.getElementById("unique-text").style.opacity = "1";
+        });
+
+        function movePage(event) {
+            event.preventDefault();
+            window.location.href = "/price";
+            
+            const formData = {
+                style: selectedStyle,
+            };
+        
+            fetch("/style", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);                        
+                    window.location.href = "/price";
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
+         }
+    </script>
+</body>
+</html>

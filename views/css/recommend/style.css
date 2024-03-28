@@ -1,0 +1,46 @@
+.purpose{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .5%;
+    margin: 0 16vw;
+}
+
+.purpose img{
+    width: 100%;
+    transition: .5s;
+}
+
+.purpose:hover img{
+    filter: brightness(.6);
+}
+
+.purpose div{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.purpose p{
+    font-family: gsB;
+    font-size: 4vw;
+    color: white;
+    opacity: 0;
+    transition: .5s;
+}
+
+.purpose:hover p{
+    opacity: 1;
+}
+.purpose-description{
+    width: 100%;
+    text-align: center;
+}
+
+.purpose:hover .purpose-description{
+    animation: wide 1s;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #ff3456;
+}

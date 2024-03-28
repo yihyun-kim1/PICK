@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>gender</title>
+    <link href="../../css/recommend/recommend.css" rel = "stylesheet"/>
+    <link href="../../css/recommend/gender.css" rel = "stylesheet"/>
+</head>
+<body>
+
+    <!-- logo -->
+    <div class = nav-container>
+        <a class = logo href="/home"><p>:<span>P</span></p>ICK</a>
+    </div>
+
+    <div class = recommend-container>
+        <!-- title -->
+        <div class = title-container style="margin: 2vw 12vw">
+            <p>WHAT IS YOUR <span>GENDER</span> ?</p>
+        </div>
+
+        <div class = gender-container>
+            <div class = gender id = gender-male>
+                <img id = male-img src="../../image/male.png">
+                <p id = male-text>MALE</p>
+            </div>
+            <div class = gender id = gender-female>
+                <img id = female-img src="../../image/female.png">
+                <p id = female-text>FEMALE</p>
+            </div>
+        </div>
+
+        <div class = previous-container>
+            <a class = logo href="/scan"><p>:<span>P</span></p>REVIOUS</a>
+            <p class = logo onclick="movePage(event)">NEXT</p>
+        </div>
+    </div>
+    <script>
+        const genderMale = document.getElementById("gender-male");
+        const genderFemale = document.getElementById("gender-female");
+        let selectedGender;
+
+        genderMale.addEventListener('click', function(){
+                selectedGender = "male";
+                document.getElementById("male-img").style.opacity = ".2";
+                document.getElementById("female-img").style.opacity = "1";
+                document.getElementById("male-text").style.color = "#ff3456";
+                document.getElementById("female-text").style.color = "white";});
+        
+        genderFemale.addEventListener('click', function(){
+                selectedGender = "female";
+                document.getElementById("male-img").style.opacity = "1";
+                document.getElementById("female-img").style.opacity = ".2";
+                document.getElementById("female-text").style.color = "#ff3456";
+                document.getElementById("male-text").style.color = "white";});
+
+        function movePage(event){
+            event.preventDefault();
+
+            const formData = {
+                gender: selectedGender,
+            };
+
+            fetch("/gender", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    window.location.href = "/season";
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
+        }
+    </script>
+</body>
+</html>

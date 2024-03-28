@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="myForm">
+        male <input id="gender" value="male" type="radio"><br />
+        <input onclick="movePage(event)">
+    </form>
+    <form id="myForm">
+        female <input id="gender" value="female" type="radio"><br />
+        <input onclick="movePage(event)">
+    </form>
+    <script src="/javascript/test.js"></script>
+    <script>
+        function movePage(event) {
+            event.preventDefault();
+            const gender = document.getElementById("gender").value;
+            const formData = {
+                give_test_input: gender,
+            };
+            fetch("/test", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    window.location.href = "/test2";
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
+        }
+    </script>
+</body>
+</html>

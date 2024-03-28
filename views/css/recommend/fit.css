@@ -1,0 +1,58 @@
+.fit-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 3% 0;
+}
+
+.fit{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1% 0 0;
+}
+
+.fit img{
+    width: 100%;
+    transition: .5s;
+}
+
+#top img{
+    opacity: .4;
+}
+
+#bottom div{
+    opacity: 0;
+}
+
+.fit:hover img{
+    cursor: pointer;
+}
+
+.fit div{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    transition: .5s;
+}
+
+.fit div p,a{
+    font-family: gsM;
+    font-size: 2.25vw;
+    text-align: center;
+    margin: 1vw 0;
+    transition: .3s;
+}
+
+
+.fit p:hover{
+    color: #ff3456;
+    cursor: pointer;
+}
+
+.fit a:hover{
+    color: #ff3456;
+    cursor: pointer;
+}

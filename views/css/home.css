@@ -1,0 +1,251 @@
+
+@font-face{
+    font-family: gsB;
+    src: url(../font/GmarketSansTTFBold.ttf)
+}
+
+@font-face{
+    font-family: gsM;
+    src: url(../font/GmarketSansTTFMedium.ttf)
+}
+
+@font-face{
+    font-family: gsL;
+    src: url(../font/GmarketSansTTFLight.ttf)
+}
+
+@keyframes fading{
+    0%{
+        opacity: 0;
+    }
+}
+
+*{
+    animation: fading 1s;
+    transition: .5s;
+    margin: 0;
+}
+
+/* top-container */
+.top-container{
+    position: fixed;
+    width: 95vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2vh 2.5vw;
+}
+
+.top-container button{
+    font-family: gsM;
+    font-size: 1.5vw;
+    background-color: black;
+    border: none;
+}
+
+.top-container button:hover{
+    color: #ff3456;
+    cursor: pointer;
+}
+
+/* top-container / logo */
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: acB;
+    font-size: 2.75vw;
+    margin-right: 60vw;
+}
+
+.logo:hover p{
+    transform: rotate(90deg);
+}
+
+.logo:hover span{
+    color: #ff3456;
+}
+
+
+/* scroll-container */
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+.scroll-container{
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    scroll-snap-type: y mandatory;
+}
+
+.section1, .section2{
+    width: 100%;
+    height: 100vh;
+    scroll-snap-align: center;
+}
+
+/* section1 */
+.perception{
+    height: 40vh;
+    padding: 30vh 3vw 0;
+    display: flex;
+    align-items: center;
+    font-family: gsL;
+    font-size: 3.5vw;
+}
+
+.scroll, .scroll-icon{
+    text-align: center;
+    font-family: gsL;
+}
+
+.scroll{
+    height: 2.5vh;
+    padding-top: 17.5vh;
+    font-size: 3vw;
+}
+
+@keyframes typing{
+    0%{
+        padding-top: 0;
+    }
+    50%{
+        padding-top: 2vh;
+    }
+}
+
+.scroll-icon{
+    height: 10vh;
+    animation: typing 1s infinite;
+    font-size: 3.5vw;
+}
+
+/* section2 */
+.section2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-container{
+    width: 40vw;
+    margin: 25vh 0;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+.nav-title{
+    margin-right: 15vw;
+    padding: .5vh 1vh;
+    font-family: gsM;
+    font-size: 1.5vw;
+    border: 1px solid white;
+    text-align: center;
+}
+
+.nav-perception{
+    margin-top: 1vh;
+    font-family: gsL;
+    font-size: 2.75vw;
+}
+
+.nav-img{
+    height: 40vw;
+    width: 40vw;
+    margin-bottom: 1vh;
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: gsB;
+    font-size: 3vw;
+    position: relative;
+}
+
+.nav-img img{
+    width: 100%;
+    height: 100%;
+    filter: brightness(.7);
+}
+
+.nav-img p{
+    position: absolute;
+}
+
+.nav-container:hover .nav-title{
+    color: black;
+    background-color: white;
+    font-family: gsB;
+}
+
+.nav-container:hover .nav-recommend{
+    color: #ff3456;
+}
+
+.nav-container:hover img{
+    filter: brightness(.2);
+}
+
+.copyright{
+    margin-right: 55vw;
+    font-size: 1vw;
+}
+
+/* pop up */
+.join-pop{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .8);
+}
+
+.pop-container{
+    width: 50vw;
+    height: 50vw;
+    margin-left: 25vw;
+    margin-top: 30vh;
+    border: 1px solid white;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: gsL;
+    font-size: 1.75vw;
+}
+
+.pop-container p{
+    margin-top: 50px;
+}
+
+.phone{
+    width: 36vw;
+    background-color: black;
+    border: 1px solid #ff3456;
+    color: white;
+    font-family: gsL;
+    font-size: 1.5vw;
+    padding: 5px;
+    margin: 10px 0 50px;
+    text-align: center;
+    letter-spacing: 5px;
+}
+
+.phone::placeholder{
+    font-family: gsL;
+    font-size: 1vw;
+    color: #ff3456;
+    letter-spacing: 5px;
+}
+
+.pop-container a{
+    border: 1px solid white;
+    padding: 6px 10px 5px;
+}
+
+.pop-container a:hover{
+    background-color: white;
+    color: black;
+}

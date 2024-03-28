@@ -1,0 +1,50 @@
+.color-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4.5vh 16vw;
+}
+
+.color-box {
+    width: 100%;
+    /* height: clamp(200px, 10vw, 1000px); */
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: gsL;
+    font-size: 1.25vw;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0vh 30vw 3vh;
+}
+
+.button-container p {
+    font-family: gsM;
+    font-size: clamp(15px, 1.75vw, 200px);
+    transition: .5s;
+}
+
+.button-container a:hover p {
+    color: rgb(210, 210, 210);
+}
+
+button {
+    background: transparent;
+    border: none;
+}
+
+button img {
+    width: clamp(15px, 1.75vw, 200px);
+    transition: .5s;
+}
+
+button img:hover {
+    opacity: .2;
+    cursor: pointer;
+}

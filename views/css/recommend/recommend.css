@@ -1,0 +1,128 @@
+@font-face{
+    font-family: gsB;
+    src: url(../../font/GmarketSansTTFBold.ttf)
+}
+
+@font-face{
+    font-family: gsM;
+    src: url(../../font/GmarketSansTTFMedium.ttf)
+}
+
+@font-face{
+    font-family: gsL;
+    src: url(../../font/GmarketSansTTFLight.ttf)
+}
+
+@font-face{
+    font-family: acB;
+    src: url(../../font/NanumSquare_acB.ttf)
+}
+
+body{
+    background-color: black;
+}
+*{
+    color: white;
+    text-decoration: none;
+    animation: fading 1s;
+    transition: .5s;
+    margin: 0;
+}
+
+.nav-container{
+    width: 95vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2vh 2.5vw;
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: acB;
+    font-size: 2.75vw;
+    margin-right: 60vw;
+}
+
+.logo:hover p{
+    transform: rotate(90deg);
+}
+
+.logo:hover span{
+    color: #ff3456;
+}
+
+@keyframes wide{
+    0%{
+        width: 0;
+    }
+    25%{
+        width: 0;
+    }
+}
+
+@keyframes space{
+    0%{
+        color: white;
+    }
+    70%{
+        letter-spacing: 0;
+        color: white;
+    }
+    85%{
+        letter-spacing: .5vw;
+        color: #ff3456;
+    }
+}
+
+.recommend-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 80vh;
+}
+
+/* title */
+.title-container{
+    display: flex;
+    justify-content: center;
+    margin: 3.5vw 12vw 1.75vw;
+}
+
+.title-container p{
+    width: 100%;
+    text-align: center;
+    animation: wide 2.75s;
+    white-space: nowrap;
+    overflow: hidden;
+    font-family: gsL;
+    font-size: 2vw;
+}
+
+.title-container span{
+    letter-spacing: 0;
+    animation: space 2.75s;
+    color: #ff3456;
+}
+
+/* previous */
+.logo{
+    margin: 0;
+}
+
+.previous-container{
+    margin: 1.75vw 16vw 4.5vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.previous-container a{
+    font-family: acM;
+    font-size: clamp(1rem, 2.25vw, 200px);
+}
+
+.previous-container a:hover{
+    color: rgb(50, 50, 50);
+}

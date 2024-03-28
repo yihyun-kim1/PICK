@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>fit</title>
+    <link href="../../css/recommend/recommend.css" rel = "stylesheet"/>
+    <link href="../../css/recommend/fit.css" rel = "stylesheet"/>
+</head>
+<body>
+    <!-- logo -->
+    <div class = nav-container>
+        <a class = logo href="/home"><p>:<span>P</span></p>ICK</a>
+    </div>
+
+    <div class = recommend-container>
+        <!-- title -->
+        <div class = title-container>
+            <p>CHOOSE THE <span>FIT</span> OF YOUR CLOTHES.</p>
+        </div>
+
+        <!-- select -->
+        <div class = fit-container>
+            <img style = "width: 14.5%;" src="../../image/head.png"/>
+            <div class = fit id = top style = "width: 32.5%;">
+                <img src="../../image/top.png"/>
+                <div>
+                    <!-- <form id="fitForm" action="/fit" method="post">  -->
+                        <!-- <input name="fit" id = topTight type="radio" value="tight" onclick='topTight()'>  -->
+                            <p id = top-tight onclick="topTight()" data-value = top-tight>TIGHT</p>
+                    <!-- </form> -->
+                    <!-- <form id="fitForm" action="/fit" method="post"> -->
+                        <!-- <input name="fit" id = topLoose type="radio" value="loose" onclick='topLoose()'> -->
+                            <p id = top-loose onclick="topLoose()" data-value = top-loose>LOOSE</p>
+                    <!-- </form> -->
+                </div>
+            </div>
+            <div class = fit id = bottom style = "width: 15.5%;">
+                <img id = bottom-img src="../../image/bottom.png"/>
+                <div id = bottom-text>
+                    <a id="bottom-tight" onclick="bottomTight()">TIGHT</a>
+                    <a id="bottom-loose" onclick="bottomLoose()">LOOSE</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- previous -->
+        <div class = previous-container>
+            <a class = logo href="/style"><p>:<span>P</span></p>REVIOUS</a>
+            <p class = logo onclick="movePage(event)">SUBMIT</p>
+        </div>
+    </div>
+        <!-- <script type="text/javascript"  src="/server.js"></script> -->
+        <script>
+        const top_Tight = document.getElementById("top-tight");
+        const top_Loose = document.getElementById("top-loose");
+        const bottom_Tight = document.getElementById("bottom-tight");
+        const bottom_Loose = document.getElementById("bottom-loose");
+        let selectedTopFit, selectedBottomFit;
+
+        top_Tight.addEventListener("click", function(){
+            selectedTopFit = "tight";
+        })
+
+        top_Loose.addEventListener("click", function(){
+            selectedTopFit = "loose";
+        })
+
+        bottom_Tight.addEventListener("click", function(){
+            selectedBottomFit = "tight";
+        })
+
+        bottom_Loose.addEventListener("click", function(){
+            selectedBottomFit = "loose";
+        })
+
+        function movePage(event) {
+            event.preventDefault();
+
+                const formData = {
+                    fit_top: selectedTopFit,
+                    fit_bottom: selectedBottomFit
+                };
+        
+            fetch("/fit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    window.location.href = "/loading";
+                    // Handle the response data here
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    // Handle any errors here
+                });
+        };
+    </script>
+    <script type="text/javascript" src="../../javascript/recommend_css/fit.js"></script>
+</body>
+</html>

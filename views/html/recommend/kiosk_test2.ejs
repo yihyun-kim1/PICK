@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="myForm2" action="/test2" method="post">
+        season <input id="season" value="summer" name="give_test_input_2" type="radio" maxlength="20" /><br />
+        <input type="submit">
+    </form>
+    <script src="/javascript/test.js"></script>
+    <script>
+        document.getElementById("myForm2").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const season = document.getElementById("season").value;
+            const formData = {
+                give_test_input_2: season,
+            };
+            fetch("/test2", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    // Handle the response data here
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    // Handle any errors here
+                });
+        });
+    </script>
+</body>
+</html>

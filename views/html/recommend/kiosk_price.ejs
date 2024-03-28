@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>price</title>
+    <link href="../../css/recommend/recommend.css" rel = "stylesheet"/>
+    <link href="../../css/recommend/price.css" rel = "stylesheet"/>
+</head>
+<body>
+    <!-- logo -->
+    <div class = nav-container>
+        <a class = logo href="/home"><p>:<span>P</span></p>ICK</a>
+    </div>
+
+    <div class = recommend-container>
+        <!-- title -->
+        <div class = title-container>
+            <p>CHOOSE THE <span>PRICE</span> OF YOUR CLOTHES.</p>
+        </div>
+
+        <!-- select -->
+        <div class = price-container>
+            <div class = price-graph-value>
+                <p>30</p>
+                <p>10</p>
+                <p>05</p>
+                <p>00</p>
+            </div>
+            <div class = price-graph>
+                <div class = price id = price1>
+                    <p class = "price-description" id = text1>~5.0\</p>
+                </div>
+                <div class = price id = price2>
+                    <p class = "price-description" id = text2>5.0\~10.0\</p>
+                </div>
+                <div class = price id = price3>
+                    <p class = "price-description" id = text3>10.0~\</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- previous -->
+        <div class = previous-container>
+            <a class = logo href="/style"><p>:<span>P</span></p>REVIOUS</a>
+            <p class = logo onclick="movePage(event)">NEXT</p>
+        </div>
+    </div>
+    <script>
+        const price1 = document.getElementById("price1");
+        const price2 = document.getElementById("price2");
+        const price3 = document.getElementById("price3");
+        let selectedPrice;
+
+        price1.addEventListener("click", function(){
+            selectedPrice = "50000";
+            price1.style.backgroundColor = "rgba(255, 52, 86, .2)";
+            price2.style.backgroundColor = "rgba(255, 255, 255, .45)";
+            price3.style.backgroundColor = "rgba(255, 255, 255, .7)";
+
+            document.getElementById("text1").style.opacity = "1";
+            document.getElementById("text2").style.opacity = "0";
+            document.getElementById("text3").style.opacity = "0";
+        })
+
+        price2.addEventListener("click", function(){
+            selectedPrice = "100000";
+            price1.style.backgroundColor = "rgba(255, 255, 255, .2)";
+            price2.style.backgroundColor = "rgba(255, 52, 86, .45)";
+            price3.style.backgroundColor = "rgba(255, 255, 255, .7)";
+
+            document.getElementById("text1").style.opacity = "0";
+            document.getElementById("text2").style.opacity = "1";
+            document.getElementById("text3").style.opacity = "0";
+        })
+
+        price3.addEventListener("click", function(){
+            selectedPrice = "300000";
+            price1.style.backgroundColor = "rgba(255, 255, 255, .2)";
+            price2.style.backgroundColor = "rgba(255, 255, 255, .45)";
+            price3.style.backgroundColor = "rgba(255, 52, 86, .7)";
+
+            document.getElementById("text1").style.opacity = "0";
+            document.getElementById("text2").style.opacity = "0";
+            document.getElementById("text3").style.opacity = "1";
+        })
+    
+        function movePage(event) {
+            event.preventDefault();
+            
+            const formData = {
+                price: selectedPrice,
+            };
+        
+            fetch("/price", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    window.location.href = "/color";
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
+        }
+    </script>
+</body>
+</html>

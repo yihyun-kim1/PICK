@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>index</title>
+    <link href="css/intro.css" rel = "stylesheet"/>
+</head>
+<body>
+    <div class = logo-container>
+        <a href="/intro" onclick="movePage()">:P</a>
+    </div>
+</body>
+<script type="text/javascript">
+    function movePage() {
+        window.location.href = "kiosk_intro.ejs"
+    }
+</script>
+</html>
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>index</title>
+    <link href="../css/intro.css" rel = "stylesheet"/>
+</head>
+<body>
+    <div class = logo-container>
+        <a href="../html/kiosk_intro.ejs" onclick="movePage()">:P</a>
+    </div>
+    <script>
+      function movePage() {
+        fetch('/home')  // 서버로 요청을 보냄
+                .then(function (response) {
+                    if (response.ok) {
+                        return response.text();
+                    } else {
+                        throw new Error('서버 응답 오류');
+                    }
+                })
+                .then(function (data) {
+                    document.open();  // 현재 문서 초기화
+                    document.write(data);  // 서버에서 받은 HTML로 문서 채우기
+                    document.close();  // 문서 닫기
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+      }
+    </script>
+</body>
+</html> -->

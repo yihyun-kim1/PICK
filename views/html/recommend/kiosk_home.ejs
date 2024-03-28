@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>home</title>
+    <link href="../../css/intro.css" rel = "stylesheet"/>
+    <link href="../../css/home.css" rel = "stylesheet"/>  
+</head>
+<body>
+    <div class = top-container>
+        <a class = logo href="kiosk_home.ejs"><p>:<span>P</span></p>ICK</a>
+        <button onclick="join()" id = join>JOIN</button>
+    </div>
+
+    <!-- pop up -->
+    <div class = join-pop id = join-pop style = "display: none; position: absolute;" >
+        <div class = pop-container>
+            <p>PLEASE ENTER YOUR NICKNAME</p>
+            <input class = phone id = phone type="text" placeholder="NICKNAME">
+            <!-- <input onclick="movePage(event)" type="button"> -->
+            <a onclick="movePage(event); closePop();">JOIN</a>
+        </div>
+    </div>
+    <!-- pop up -->
+
+    <div class = scroll-container>
+        <div class = section1>
+            <div class = perception>
+                PICK is Personal Coordinating Web, using Deep-Learning Technology. 
+                Designed to find the Best Coordination just for you. You don’t have to worry about Coordinating Anymore.
+            </div>
+            <div class = scroll>SCROLL</div>
+            <div class = scroll-icon>↓</div>
+        </div>
+
+        <div class = section2>
+            <a class = nav-container href="/scan">
+                <div class = nav-img onclick="movePage()">
+                    <img src="../../image/home_recommend.jpg">
+                    <p class = nav-recommend>RECOMMEND</p>
+                </div>
+                <p class = nav-title>RECOMMEND</p>
+                <p class = nav-perception>We'll Recommend You<br>a Custom Coordination.</p>
+            </a>
+            
+            <a class = copyright>Copyright © TEAM PRISM. All Rights Reserved.</a>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../javascript/join.js"></script>
+</body>

@@ -1,0 +1,99 @@
+.price-container {
+    display: flex;
+    margin: 2vw 16vw;
+    align-items: center;
+}
+
+.price-graph-value {
+    width: 2.5%;
+    height: 57vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+
+}
+
+.price-graph-value p {
+    transform: rotate(-90deg);
+    font-family: gsL;
+    font-size: clamp(12px, 2vw, 1000px);
+}
+
+.price-graph {
+    width: 97.5%;
+    display: flex;
+    justify-content: space-around;
+    height: 60vh;
+    border-left: 2px solid white;
+    border-bottom: 2px solid white;
+    padding: 0 .5%;
+}
+
+.price {
+    background-color: white;
+    width: 30%;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .5s;
+}
+
+#price1 {
+    margin-top: 40vh;
+    background-color: rgba(255, 255, 255, .2);
+}
+
+#price1:hover {
+    background-color: rgba(255, 52, 86, .3);
+}
+
+#price2 {
+    margin-top: 20vh;
+    background-color: rgba(255, 255, 255, .4);
+}
+
+#price2:hover {
+    background-color: rgba(255, 52, 86, .45);
+}
+
+#price3 {
+    /* margin-top: 22vh;  */
+    background-color: rgba(255, 255, 255, .6);
+}
+
+#price3:hover {
+    background-color: rgba(255, 52, 86, .6);
+}
+
+#price4 {
+    margin-top: 11vh;
+    background-color: rgba(255, 255, 255, .8);
+}
+
+#price4:hover {
+    background-color: rgba(255, 52, 86, .8);
+}
+
+.price:hover {
+    background-color: rgba(255, 52, 86, 1);
+}
+
+.price-description {
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-family: gsM;
+    font-size: 1.55vw;
+    opacity: 0;
+    transition: .5s;
+}
+
+.price:hover .price-description {
+    opacity: 1;
+    animation: wide 1s;
+    white-space: nowrap;
+    overflow: hidden;
+}

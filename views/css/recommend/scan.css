@@ -1,0 +1,50 @@
+.canvas-wrapper {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+#video {
+  position: absolute;
+  width: 80%;
+  height: 90%;
+  display: none;
+}
+
+#output {
+  position: absolute;
+  width: 80%;
+  height: 90%;
+  z-index: 2;
+}
+
+#text {
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  z-index: 3;
+}
+
+#plus-canvas {
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  display: none;
+}
+
+
+.result {
+  margin-left: 10%;
+  margin-bottom: 10px;
+  font-family: gsL;
+  font-size: 1.75vw;
+}
+
+#finish{
+  position: absolute;
+  z-index: 1;
+  display: none;
+  font-family: gsB;
+  font-size: 3vw;
+}

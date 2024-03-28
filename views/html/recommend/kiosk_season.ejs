@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>season</title>
+    <link href="../../css/recommend/recommend.css" rel = "stylesheet"/>
+    <link href="../../css/recommend/season.css" rel = "stylesheet"/>
+</head>
+<body>
+
+    <!-- logo -->
+    <div class = nav-container>
+        <a class = logo href="/home"><p>:<span>P</span></p>ICK</a>
+    </div>
+
+    <div class = recommend-container>
+        <!-- title -->
+        <div class = title-container style="margin: 2vw 12vw">
+            <p>CHOOSE THE <span>WEATHER</span> TO WEAR.</p>
+        </div>
+
+        <!-- select -->
+        <div class = season-container>
+            <div class = season id = season-spring>
+                <img id = spring-img src="../../image/spring.jpg">
+                <div id = spring-text class = season-text>
+                    <p class = season-title style="font-family: gsB">SPRING</p>
+                    <p class = season-description style = "width: 100%"><span>15°C~25</span>°C</p>
+                </div>
+                
+            </div>
+            <div class = season id = season-summer>
+                <img id = summer-img src="../../image/summer.jpg">
+                <div id = summer-text class = season-text>
+                    <p class = season-title style="font-family: gsB;">SUMMER</p>
+                    <p class = season-description style = "width: 100%"><span>25°C~35°C</span></p>
+                </div>
+            </div>
+        </div>
+        <div class = season-container>
+            <div class = season id = season-autumn>
+                <img id = autumn-img src="../../image/autumn.jpg">
+                <div id = autumn-text class = season-text>
+                    <p class = season-title style="font-family: gsB">AUTUMN</p>
+                    <p class = season-description><span>05°C</span>~15°C</p>
+                </div>
+            </div>
+            <div class = season id = season-winter>
+                <img id = winter-img src="../../image/winter.jpg">
+                <div id = winter-text class = season-text>
+                    <p class = season-title style="font-family: gsB">WINTER</p>
+                    <p class = season-description>-05°C~05°C</p>
+                </div>
+            </div>
+        </div>
+
+        <div class = previous-container>
+            <a class = logo href="/gender"><p>:<span>P</span></p>REVIOUS</a>
+            <p class = logo onclick="movePage(event)">NEXT</p>
+        </div>
+    </div>
+    <script>
+        const seasonSpring = document.getElementById("season-spring");
+        const seasonSummer = document.getElementById("season-summer");
+        const seasonAutumn = document.getElementById("season-autumn");
+        const seasonWinter = document.getElementById("season-winter");
+        let selectedSeason;
+
+        seasonSpring.addEventListener("click", function(){
+            selectedSeason = "spring";
+            document.getElementById("spring-img").style.filter = "brightness(.25)";
+            document.getElementById("summer-img").style.filter = "brightness(1)";
+            document.getElementById("autumn-img").style.filter = "brightness(1)";
+            document.getElementById("winter-img").style.filter = "brightness(1)";
+            
+            document.getElementById("spring-text").style.opacity = "1";
+            document.getElementById("summer-text").style.opacity = "0";
+            document.getElementById("autumn-text").style.opacity = "0";
+            document.getElementById("winter-text").style.opacity = "0";
+        })
+
+        seasonSummer.addEventListener("click", function(){
+            selectedSeason = "summer";
+            document.getElementById("spring-img").style.filter = "brightness(1)";
+            document.getElementById("summer-img").style.filter = "brightness(.25)";
+            document.getElementById("autumn-img").style.filter = "brightness(1)";
+            document.getElementById("winter-img").style.filter = "brightness(1)";
+
+            document.getElementById("spring-text").style.opacity = "0";
+            document.getElementById("summer-text").style.opacity = "1";
+            document.getElementById("autumn-text").style.opacity = "0";
+            document.getElementById("winter-text").style.opacity = "0";
+        })
+
+        seasonAutumn.addEventListener("click", function(){
+            selectedSeason = "autumn"
+            document.getElementById("spring-img").style.filter = "brightness(1)";
+            document.getElementById("summer-img").style.filter = "brightness(1)";
+            document.getElementById("autumn-img").style.filter = "brightness(.25)";
+            document.getElementById("winter-img").style.filter = "brightness(1)";
+
+            document.getElementById("spring-text").style.opacity = "0";
+            document.getElementById("summer-text").style.opacity = "0";
+            document.getElementById("autumn-text").style.opacity = "1";
+            document.getElementById("winter-text").style.opacity = "0";
+        })
+
+        seasonWinter.addEventListener("click", function(){
+            selectedSeason = "winter"
+            document.getElementById("spring-img").style.filter = "brightness(1)";
+            document.getElementById("summer-img").style.filter = "brightness(1)";
+            document.getElementById("autumn-img").style.filter = "brightness(1)";
+            document.getElementById("winter-img").style.filter = "brightness(.25)";
+
+            document.getElementById("spring-text").style.opacity = "0";
+            document.getElementById("summer-text").style.opacity = "0";
+            document.getElementById("autumn-text").style.opacity = "0";
+            document.getElementById("winter-text").style.opacity = "1";
+        })
+
+        function movePage(event) {
+            event.preventDefault();
+
+            const formData = {
+                season: selectedSeason,
+            };
+        
+            fetch("/season", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    window.location.href = "/style";
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
+            }
+    </script>
+</body>
+</html>

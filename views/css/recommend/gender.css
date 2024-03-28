@@ -1,0 +1,28 @@
+.gender-container{
+    display: flex;
+    justify-content: center;
+}
+
+.gender{
+    margin: 3vw 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img{
+    width: 50%;
+}
+.gender:hover img{
+    opacity: .2;
+}
+
+.gender p{
+    font-family: gsM;
+    font-size: 1.75vw;
+    position: absolute;
+}
+
+.gender:hover p{
+    color: #ff3456;
+}

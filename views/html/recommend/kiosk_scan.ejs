@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>scan</title>
+    <link href="../../css/recommend/recommend.css" rel="stylesheet"/>
+    <link href="../../css/recommend/scan.css" rel="stylesheet"/>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+</head>
+<body>
+    <!-- logo -->
+    <div class="nav-container">
+        <a class="logo" href="/home">
+            <p>:<span>P</span></p>ICK
+        </a>
+    </div>
+
+    <!-- title -->
+    <div class="title-container" style="margin: 2vw 12vw">  
+        <p>SHOW YOUR <span>STYLE</span>!</p>
+    </div>
+
+    <!-- <div class = recommend-container> -->
+    <div class="canvas-wrapper" id = "canvas-wrapper">
+        <video id="video"></video>
+        <canvas id="output"></canvas>
+        <canvas id="text"></canvas>
+        <p id = "finish">COMPLETE!</p>
+    </div>
+
+    <p class="result">TOP: <span id="text2"></span></p>
+    <p class="result">BOTTOM: <span id="text3"></span></p>
+
+    <div class="previous-container">
+        <a></a>
+        <a class="logo" href="/gender" onclick="movePage(event)">NEXT</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+    <script>
+
+        // Wait for the page to load
+        window.addEventListener('load', function() {
+            // Get the canvas element
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            // Set the canvas size
+            const aspectRatio = 2 / 3;
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+
+            // Get the video element
+            const video = document.getElementById('video');
+            const output = document.getElementById('output');
+            const text = document.getElementById('text');
+
+            // Variable to track if image has been captured
+            let imageCaptured = false;
+
+
+            // Capture image after 5 seconds
+            setTimeout(function() {
+            // Check if image has been captured already
+            if (!imageCaptured) {
+                // Draw the video frame on the canvas
+                // ctx.drawImage(video, 0, 0, width, height);
+                ctx.drawImage(output, 0, 0, width, height);
+                ctx.drawImage(text, 0, 0, width, height);
+
+                // Convert the canvas image to data URL
+                const dataURL = canvas.toDataURL();
+                sessionStorage.setItem('capturedImage', dataURL);
+
+                // Set imageCaptured to true to prevent capturing again
+                imageCaptured = true;
+                video.pause();
+            }
+            }, 9000);
+
+            setTimeout(function() {
+                    document.getElementById("finish").style.display = "block";
+                    document.getElementById("output").style.opacity = ".2";
+                    document.getElementById("text").style.opacity = ".2";
+            }, 10000);
+
+        });
+
+
+        function movePage(event) {
+            event.preventDefault();
+
+            const top = sessionStorage.getItem('top');
+            const bottom = sessionStorage.getItem('bottom');
+            
+            const formData = {
+                top: top,
+                bottom: bottom,
+            };
+        
+            fetch("/scan", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    window.location.href = "/gender";
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
+        }
+
+
+    </script>
+    <script src="../../javascript/recommend_css/scan.js"></script>
+</body>
+</html>

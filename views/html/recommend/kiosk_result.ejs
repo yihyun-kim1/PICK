@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="../../css/recommend/recommend.css" rel="stylesheet"/>
+    <link href="../../css/recommend/result.css" rel="stylesheet"/>
+    <link href="../../css/recommend/loading.css" rel="stylesheet"/>
+</head>
+<body>
+    <!-- logo -->
+    <div class="nav-container">
+        <a class="logo" href="/home"><p>:<span>P</span></p>ICK</a>
+    </div>
+
+    <div class="title-container">
+        <p><span>PICK!</span> YOUR OWN COORDINATION.</p>
+    </div>
+
+    <div class="recommend-container">
+        <div class="result-container">
+            <div class="capture-container">
+                <button class="userPICK"><%= userData.username %>'S <span style="color:#ff3456">PICK!</span></button>
+                <img src="../../image/detect-img.png">
+            </div>
+            <div class="arrow-container">
+                <img class="arrow" src="../../image/arrow.png"/>
+            </div>
+            <div class="link-container">
+                <div class="link-box">
+                    <p class="link-title"""><span>TOP</span> based on bottom</p>
+                    <div class="link">
+                        <a href="<%= userData.result_top1 %>">
+                            <button id="link-button1">
+                                <img id="img1" src="<%= userData.ImgTop1 %>">
+                            </button>
+                        </a>
+                        <a href="<%= userData.result_top2 %>">
+                            <button id="link-button2">
+                                <img id="img2" src="<%= userData.ImgTop2 %>">
+                            </button>
+                        </a>
+                    </div>
+                    <div class="link">
+                        <a href="<%= userData.result_top3 %>">
+                            <button id="link-button3">
+                                <img id="img3" src="<%= userData.ImgTop3 %>">
+                            </button>
+                        </a>
+                        <a href="<%= userData.result_top4 %>">
+                            <button id="link-button7">
+                                <img id="img7" src="<%= userData.ImgTop4 %>">
+                            </button>
+                        </a>
+                    </div>
+                    <!-- <div class="button-container">
+                        <button onclick="topChange1()"><img src="../../image/next.png" style="transform: rotate(180deg);"/></button>
+                        <button onclick="topChange2()"><img src="../../image/next.png"/></button>
+                    </div> -->
+                </div>
+                <br/>
+                <br/>
+
+                <div class="link-box" >
+                    <p class="link-title" style="margin-top: 30%;"><span>BOTTOM</span> based on top</p>
+                    <div class="link">
+                        <a href="<%= userData.result_bottom1 %>">
+                            <button id="link-button4">
+                                <img id="img4" src="<%= userData.ImgBottom1 %>">
+                            </button>
+                        </a>
+                        <a href="<%= userData.result_bottom2 %>">
+                            <button id="link-button5">
+                                <img id="img5" src="<%= userData.ImgBottom2 %>">
+                            </button>
+                        </a>
+                        </a>
+                    </div>
+                    <div class="link">
+                        <a href="<%= userData.result_bottom3 %>">
+                            <button id="link-button6">
+                                <img id="img6" src="<%= userData.ImgBottom3 %>">
+                            </button>
+                        <a href="<%= userData.result_bottom4 %>">
+                            <button id="link-button10">
+                                <img id="img10" src="<%= userData.ImgBottom4 %>">
+                            </button>
+                        </a>
+                    </div>
+                    <!-- <div class="button-container">
+                        <button onclick="botChange1()"><img src="../../image/next.png" style="transform: rotate(180deg);"/></button>
+                        <button onclick="botChange2()"><img src="../../image/next.png"/></button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <!-- <div class="result-button">
+            <button class="send" onClick="location.href='../kiosk_home.ejs'">SEND</button>
+        </div> -->
+    </div>
+    <div class="center-bottom-container">
+        <div class="qrcode-container">
+            <label id="styledlabel">forms</label>
+            <img id="myQRImage" src="../../image/qr.png" alt="My QR Code">
+        </div>
+        
+        <div class="qrcode-container">
+            <label id="styledlabel">Result</label>
+            <div id="qrcode"></div>
+        </div>
+    </div>
+    
+    <script>
+        window.onload = function() {
+        generateQR();
+        }
+    
+        function generateQR() {
+        const ngrokURL = 'https://00a6-219-255-207-96.ngrok-free.app';  // 복사한 ngrok URL을 여기에 붙여넣습니다.
+        const usernameData = '<%= userData.username %>';
+        const combinedData = `${ngrokURL}/result_${usernameData}`;
+        const qrAPI = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${combinedData}`;
+        document.getElementById('qrcode').innerHTML = `<img src="${qrAPI}" alt="Generated QR Code"/>`;
+        }
+    
+        generateQR();
+    
+        // Set captured image
+        const capturedImageDataURL = sessionStorage.getItem('capturedImage');
+        const imgElement = document.querySelector('.capture-container img');
+        imgElement.src = capturedImageDataURL;
+
+
+        var i = 0;
+
+        function topChange1() {
+            i--;
+            if (i < 0) { i = topData.length - 2 }
+            document.getElementById("img1").src = topData[i].img;
+            document.getElementById("img2").src = topData[(i + 1) % topData.length].img;
+            document.querySelector("#link-button1 a").href = topData[i].link;
+            document.querySelector("#link-button2 a").href = topData[(i + 1) % topData.length].link;
+        }
+
+        function topChange2() {
+            i++;
+            if (i >= topData.length - 1) { i = 0 }
+            document.getElementById("img1").src = topData[i].img;
+            document.getElementById("img2").src = topData[(i + 1) % topData.length].img;
+            document.querySelector("#link-button1 a").href = topData[i].link;
+            document.querySelector("#link-button2 a").href = topData[(i + 1) % topData.length].link;
+        }
+
+        function botChange1() {
+            i--;
+            if (i < 0) { i = bottomData.length - 2 }
+            document.getElementById("img3").src = bottomData[i].img;
+            document.getElementById("img4").src = bottomData[(i + 1) % bottomData.length].img;
+            document.querySelector("#link-button3 a").href = bottomData[i].link;
+            document.querySelector("#link-button4 a").href = bottomData[(i + 1) % bottomData.length].link;
+        }
+
+        function botChange2() {
+            i++;
+            if (i >= bottomData.length - 1) { i = 0 }
+            document.getElementById("img3").src = bottomData[i].img;
+            document.getElementById("img4").src = bottomData[(i + 1) % bottomData.length].img;
+            document.querySelector("#link-button3 a").href = bottomData[i].link;
+            document.querySelector("#link-button4 a").href = bottomData[(i + 1) % bottomData.length].link;
+        }
+    </script>
+</body>
+</html>

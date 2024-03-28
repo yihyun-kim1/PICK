@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>color</title>
+    <link href="../../css/recommend/recommend.css" rel = "stylesheet"/>
+    <link href="../../css/recommend/color.css" rel = "stylesheet"/>
+</head>
+<body>
+    <!-- logo -->
+    <div class = nav-container>
+        <a class = logo href="/home"><p>:<span>P</span></p>ICK</a>
+    </div>
+
+    <div class = recommend-container>
+        <!-- title -->
+        <div class = title-container>
+            <p>CHOOSE THE <span>COLOR</span> OF YOUR COORDINATION.</p>
+        </div>
+
+        <!-- select -->
+        <div class = color-container>
+            <p class = color-box id = color1 style="background-color: #F2F2F2;">#F2F2F2</p>
+            <p class = color-box id = color2 style="background-color: #BFBFBF;">#BFBFBF</p>
+            <p class = color-box id = color3 style="background-color: #737373;">#737373</p>
+            <p class = color-box id = color4 style="background-color: #404040;">#404040</p>
+            <p class = color-box id = color5 style="background-color: #0D0D0D;">#0D0D0D</p>
+        </div>
+        <div class = button-container>
+            <button onclick="colorChange()"><img src="../../image/next.png" style="transform: rotate(180deg);"/></button>
+            <p id = color-name>BLACK&WHITE</p>
+            <button onclick="colorChange2()"><img src="../../image/next.png"/></button>
+        </div>
+
+        <div class = color-container>
+            <p class = color-box id = color6 style="background-color: #F2F2F2;">#F2F2F2</p>
+            <p class = color-box id = color7 style="background-color: #BFBFBF;">#BFBFBF</p>
+            <p class = color-box id = color8 style="background-color: #737373;">#737373</p>
+            <p class = color-box id = color9 style="background-color: #404040;">#404040</p>
+            <p class = color-box id = color0 style="background-color: #0D0D0D;">#0D0D0D</p>
+        </div>
+        <div class = button-container>
+            <button onclick="colorChange3()"><img src="../../image/next.png" style="transform: rotate(180deg);"/></button>
+            <p id = color-name2>BLACK&WHITE</p>
+            <button onclick="colorChange4()"><img src="../../image/next.png"/></button>
+        </div>
+
+        <!-- previous -->
+        <div class = previous-container>
+            <a class = logo href="/price"><p>:<span>P</span></p>REVIOUS</a>
+            <p class = logo onclick="movePage(event)">NEXT</p>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../javascript/recommend_css/color.js"></script>
+</body>
+</html>
