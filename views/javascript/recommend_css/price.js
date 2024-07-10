@@ -1,6 +1,6 @@
 const GroupName =['gender','season','style','price','color','fit']
 SelectedGroup = JSON.parse(sessionStorage.getItem("SelectedGroup"));
-// 
+
 var i = 0;
 
 function getSelectedVal(event)  {
