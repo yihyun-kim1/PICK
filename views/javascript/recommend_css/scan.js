@@ -65,11 +65,7 @@ async function runObjectDetection() {
       .div(255.0).expandDims(0);
   });
 
-  // Detector can be null if initialization failed (for example when loading
-  // from a URL that does not exist).
   if (detector != null) {
-    // Detectors can throw errors, for example when using custom URLs that
-    // contain a model that doesn't provide the expected output.
     try {
       detect_res = await detector.executeAsync(input);
     } catch (error) {
@@ -98,9 +94,6 @@ class Camera {
 
   }
 
-  /**
-   * Initiate a Camera instance and wait for the camera stream to be ready.
-   */
   static async setupCamera() {
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
       throw new Error(
@@ -113,8 +106,6 @@ class Camera {
       'audio': false,
       'video': {
         facingMode: 'user',
-        // Only setting the video to a specified size for large screen, on
-        // // mobile devices accept the default size.
         width: isMobile() ? $m_size.width : $size.width,
         height: isMobile() ? $m_size.height : $size.height,
       }
@@ -135,7 +126,7 @@ class Camera {
 
     const videoWidth = camera.video.videoWidth;
     const videoHeight = camera.video.videoHeight;
-    // Must set below two lines, otherwise video element doesn't show.
+
     camera.video.width = videoWidth;
     camera.video.height = videoHeight;
 
@@ -146,7 +137,6 @@ class Camera {
     const canvasContainer = document.querySelector('.canvas-wrapper');
     canvasContainer.style = 'width: 100vw; height: 75vh;';
 
-    // Because the image from camera is mirrored, need to flip horizontally.
     camera.ctx.translate(camera.video.videoWidth, 0);
     camera.ctx.scale(-1, 1);
     return camera;
@@ -190,18 +180,14 @@ class Camera {
       const klass = coco_names[classes_data[i]];
       const score = scores_data[i].toFixed(2);
 
-      // Get the color for the current class.
       const color = colors[classes_data[i]];
 
-      // Draw the bounding box.
       this.ctx.strokeStyle = color;
       this.ctx.lineWidth = 4;
       this.ctx.strokeRect(x1, y1, width, height);
 
-      // Draw the label background.
       this.ctx.fillStyle = color;
 
-      // Draw the label background.
       this.tx.fillStyle = '#000000';
       const textWidth = this.tx.measureText(klass + ":" + score).width;
       const textHeight = parseInt(font, 10); // base 10
@@ -259,19 +245,12 @@ async function renderResult() {
   }
 
   let detect_res = null;
-  //const webcam = await tf.data.webcam(camera.video, { resizeWidth: 640, resizeHeight: 640 });
-  //const img = await webcam.capture();
   let [modelWidth, modelHeight] = detector.inputs[0].shape.slice(1, 3);
   const input = tf.tidy(() => {
     return tf.image.resizeBilinear(tf.browser.fromPixels(camera.video), [modelWidth, modelHeight])
       .div(255.0).expandDims(0);
   });
-  // Detector can be null if initialization failed (for example when loading
-  // from a URL that does not exist).
   if (detector != null) {
-
-    // Detectors can throw errors, for example when using custom URLs that
-    // contain a model that doesn't provide the expected output.
     try {
       detect_res = await detector.executeAsync(
         input,
@@ -303,7 +282,6 @@ async function app() {
 
   renderPrediction();
 
-  // Run object detection
   await runObjectDetection();
 }
 
